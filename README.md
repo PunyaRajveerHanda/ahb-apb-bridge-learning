@@ -26,3 +26,8 @@ full-AHB SPLIT/RETRY and arbitration are background study only.
 
 - notes/: handwritten notes and diagrams.
 - journal/: daily learning progress.
+## Study checkpoint — 15 October 2026
+
+Limited time today, so this update records my current checkpoint.
+Next: revise the APB state diagram to include PREADY and draw a write
+transfer with one wait cycle, marking the exact completion edge.
