@@ -1,33 +1,66 @@
-# AHB-to-APB Bridge — Learning and RTL Design
+# AHB-Lite-to-APB3 Bridge — Learning and RTL Design
 
-My goal is to learn how to design and verify an AHB-Lite-to-APB bridge.
+This repository documents my progress towards understanding,
+designing and verifying an AHB-Lite-to-APB3 bridge.
 
-This project will cover bus protocols, timing diagrams, state machines,
-RTL design and verification.
+It contains handwritten notes, daily journals, learning resources
+and, later, the bridge implementation and verification results.
 
-Current progress: Day 5 handwritten notes prepared and reviewed. Protocol
-study is in progress; bridge RTL implementation and simulation have not started.
+## Current status
 
-| Session | Study and recorded artifacts |
+Day 6 AHB fundamentals notes and journal are published.
+
+Protocol study is in progress. Bridge RTL implementation and
+simulation have not started.
+
+## Learning progress
+
+| Session | Work recorded |
 | --- | --- |
 | Day 1 | AMBA overview and bridge purpose; four handwritten pages |
-| Day 2 | AHB basic transfers, pipelining and interconnection introduction; five pages |
-| Day 3 | Legacy AHB interconnection, bursts and WRAP4 calculations; six pages and review corrections |
-| Day 4 | Legacy AHB SPLIT transfers and bus data width through class page 29; three pages and review corrections |
-| Day 5 | APB states and introductory read/write timing; six pages and review corrections |
+| Day 2 | AHB basic transfers, pipelining and introductory interconnection; five pages |
+| Day 3 | Legacy AHB interconnection, bursts and WRAP4 calculations; six pages |
+| Day 4 | Legacy AHB SPLIT transfers and bus data width; three pages |
+| Day 5 | APB states and introductory read/write timing; six pages |
+| Day 6 | Supplementary AHB basics lesson, master-interface diagram and signal terminology; three pages |
 
-The journals record corrections alongside the original handwritten photos.
-Outstanding work includes revising those annotations, drawing an APB write
-with a wait cycle, and finishing the earlier numeric AHB two-write exercise.
+The institute’s AMBA material has been covered. Supplementary
+video lessons are being used to strengthen conceptual understanding,
+alongside the official Arm specifications.
 
-Planned bridge scope: single-clock, 32-bit AHB-Lite-to-APB3, aligned word
-reads/writes, one active transaction, peripheral waits and errors. Legacy
-full-AHB SPLIT/RETRY and arbitration are background study only.
+## Repository structure
 
-- notes/: handwritten notes and diagrams.
-- journal/: daily learning progress.
+- `notes/` — handwritten study notes and diagrams.
+- `journal/` — daily work summaries and links to resources studied.
+
+## Resources
+
+- Institute-provided AMBA Bus Architecture material.
+- Arm AHB specification: IHI0033C.
+- Arm APB specification: IHI0024D.
+- [Day 6 supplementary video lesson](https://www.youtube.com/watch?v=dxKE1wHvHCg)
+
+The official Arm specifications are the reference for protocol behavior.
+
+## Planned implementation scope
+
+- Single-clock, 32-bit AHB-Lite-to-APB3 bridge.
+- Aligned word reads and writes.
+- One active transaction at a time.
+- APB wait-state handling.
+- APB error propagation using the required AHB-Lite error response.
+
+Legacy full-AHB arbitration, SPLIT and RETRY are background
+study topics and are outside the baseline implementation.
+
+## Next steps
+
+- Continue supplementary lessons and protocol exercises.
+- Practise transfer timing, wait states and address/data pairing.
+- Define the bridge requirements and architecture.
+- Implement and verify the RTL after consolidating the fundamentals.
+
 ## Study checkpoint — 15 October 2026
 
-Limited time today, so this update records my current checkpoint.
-Next: revise the APB state diagram to include PREADY and draw a write
-transfer with one wait cycle, marking the exact completion edge.
+Limited time was available, so this session recorded the current
+checkpoint and the next APB timing exercise.
