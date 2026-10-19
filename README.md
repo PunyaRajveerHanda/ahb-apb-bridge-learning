@@ -8,7 +8,8 @@ and, later, the bridge implementation and verification results.
 
 ## Current status
 
-Day 8 AHB multiple-transfer, transfer-type and transfer-size notes and journal are published.
+Study progress has reached Day 9: AHB burst types, incrementing
+and wrapping address sequences, transfer alignment and burst timing.
 
 Protocol study is in progress. Bridge RTL implementation and
 simulation have not started.
@@ -25,6 +26,7 @@ simulation have not started.
 | Day 6 | Supplementary AHB basics lesson, master-interface diagram and signal terminology; three pages |
 | Day 7 | AHB address/data phases, pipelined transfers, HREADY and wait-state timing; three pages |
 | Day 8 | AHB overlapping transfers, wait states, HTRANS types and HSIZE encodings; three pages |
+| Day 9 | HBURST encodings, INCR4/WRAP4 address sequences, wrap-block calculations, alignment and burst timing; four pages |
 
 The institute’s AMBA material has been covered. Supplementary
 video lessons are being used to strengthen conceptual understanding,
@@ -38,15 +40,16 @@ alongside the official Arm specifications.
 ## Resources
 
 - Institute-provided AMBA Bus Architecture material.
-- Arm AHB specification: IHI0033C.
+- [Arm AHB specification — IHI0033C](https://developer.arm.com/documentation/ihi0033/c/)
 - Arm APB specification: IHI0024D.
 - [Day 6 supplementary video lesson](https://www.youtube.com/watch?v=dxKE1wHvHCg)
 - [Day 7 supplementary video — AHB transfer concepts](https://youtu.be/3SFTy4on9sc)
 - [Day 7 supplementary video — AHB transfer timing and wait states](https://youtu.be/-EbEzAacqoQ)
 - [Day 8 supplementary lesson 1](https://youtu.be/M4CxmSdoSzA)
 - [Day 8 supplementary lesson 2](https://youtu.be/v2EcFDnWIrw)
+- [Day 9 supplementary lesson](https://youtu.be/1or91qL6bds)
 
-The supplementary videos are from the same playlist being followed
+The supplementary videos are from the playlist being followed
 from Day 6 onward. The official Arm specifications remain the
 reference for protocol behavior.
 
@@ -61,22 +64,27 @@ reference for protocol behavior.
 Legacy full-AHB arbitration, SPLIT and RETRY are background
 study topics and are outside the baseline implementation.
 
+Burst-protocol study does not mean that burst support has been
+implemented. The bridge’s handling of incoming burst beats will
+be specified before RTL development.
+
 ## Next steps
 
 - Continue supplementary lessons and protocol exercises.
-- Strengthen understanding of AHB pipelined address and data phases.
-- Practise transfer timing, wait states and address/data pairing.
-- Relate AHB transfer completion to the APB side of the bridge.
+- Practise incrementing and wrapping address calculations.
+- Strengthen transfer timing, wait-state and address/data pairing concepts.
+- Relate AHB transfer completion to APB transactions.
 - Define the bridge requirements and architecture.
 - Implement and verify the RTL after consolidating the fundamentals.
 
-## Latest study checkpoint — 18 October 2026
+## Latest study checkpoint — 19 October 2026
 
-Day 8 covered overlapping AHB transfers, wait-state behavior,
-HTRANS transfer types and HSIZE transfer-size encodings.
+Day 9 focused on AHB burst transfers and address generation.
 
-Three handwritten pages and the [Day 8 journal](journal/day-008.md)
-record a write-read-write timing example, IDLE/BUSY/NONSEQ/SEQ,
-and the relationship between transfer size and data-bus width.
-The next focus is to apply these concepts to concrete timing exercises
-and continue the supplementary lessons.
+Four handwritten pages and the [Day 9 journal](journal/day-009.md)
+record HBURST encodings, INCR4 and WRAP4 examples, wrap-block
+sizes, transfer alignment and timing with wait states.
+
+The main takeaway is the distinction between incrementing
+addresses and wrapping within an aligned block. Further work
+will connect these protocol concepts to the bridge architecture.
