@@ -1,15 +1,18 @@
-# AHB-Lite-to-APB3 Bridge — Learning and RTL Design
+# AHB-to-APB Bridge — Learning and RTL Design
 
 This repository documents my progress towards understanding,
-designing and verifying an AHB-Lite-to-APB3 bridge.
+designing and verifying a full AHB-to-APB bridge, with APB3 peripheral interfaces.
 
 It contains handwritten notes, daily journals, learning resources
 and, later, the bridge implementation and verification results.
 
 ## Current status
 
-Study progress has reached Day 10: WRAP8 read-transfer timing,
-wrap-boundary calculations and undefined-length INCR bursts.
+Study progress has reached Day 10: WRAP8 read timing, wrap-boundary
+calculations and undefined-length INCR bursts.
+
+The implementation target is full AMBA 2 AHB, not AHB-Lite.
+The APB side remains APB3 with peripheral wait and error handling.
 
 Protocol study is in progress. Bridge RTL implementation and
 simulation have not started.
@@ -37,11 +40,14 @@ alongside the official Arm specifications.
 
 - `notes/` — handwritten study notes and diagrams.
 - `journal/` — daily work summaries and links to resources studied.
+- `docs/` — current implementation scope and learning route.
 
 ## Resources
 
 - Institute-provided AMBA Bus Architecture material.
-- [Arm AHB specification — IHI0033C](https://developer.arm.com/documentation/ihi0033/c/)
+- [Full AHB: Arm AMBA 2 specification — IHI0011A](https://documentation-service.arm.com/static/642569a2314e245d086bc87e?token=)
+- [Arm AHB Example AMBA System — architectural reference](https://documentation-service.arm.com/static/5f1061300daa596235e7b232?token=)
+- [AHB-Lite/AHB5 comparison reference — IHI0033C](https://developer.arm.com/documentation/ihi0033/c/)
 - Arm APB specification: IHI0024D.
 - [Day 6 supplementary video lesson](https://www.youtube.com/watch?v=dxKE1wHvHCg)
 - [Day 7 supplementary video — AHB transfer concepts](https://youtu.be/3SFTy4on9sc)
@@ -57,36 +63,43 @@ reference for protocol behavior.
 
 ## Planned implementation scope
 
-- Single-clock, 32-bit AHB-Lite-to-APB3 bridge.
-- Aligned word reads and writes.
-- One active transaction at a time.
-- APB wait-state handling.
-- APB error propagation using the required AHB-Lite error response.
+- Full AMBA 2 AHB slave to APB3 master bridge, with a shared clock and 32-bit address/data paths.
+- Aligned word reads and writes as the first implementation milestone.
+- Full-AHB two-bit HRESP interface; initially OKAY/ERROR responses and wait-state handling.
+- APB SETUP/ACCESS sequencing, PREADY waits and PSLVERR propagation.
+- SINGLE bring-up followed by explicitly verified beat-wise burst translation.
+- A separate two-master arbitration/interconnect verification setup, including ownership, handover and locked sequences.
+- A documented unsupported-request and reset policy before RTL development.
 
-Legacy full-AHB arbitration, SPLIT and RETRY are background
-study topics and are outside the baseline implementation.
+SPLIT/RETRY are part of full-AHB study and system-level reasoning. Generating
+these responses in the bridge is a separately scoped extension; a full-AHB slave
+need not implement every response mechanism. The arbiter remains outside the bridge.
 
-Burst-protocol study does not mean that burst support has been
-implemented. The bridge’s handling of incoming burst beats will
-be specified before RTL development.
+No bridge RTL, simulations, burst support or multi-master integration are
+claimed as complete. The current plan and verification gates are in
+[the implementation route](docs/IMPLEMENTATION_PLAN.md).
+
+Use the [protocol reference](docs/PROTOCOL_REFERENCE.md) alongside the original
+handwritten notes for timing rules and the distinction between protocol versions.
 
 ## Next steps
 
-- Continue supplementary lessons and protocol exercises.
-- Practise fixed-length and undefined-length burst examples.
-- Strengthen transfer timing, wait-state and address/data pairing concepts.
-- Relate AHB transfer completion to APB transactions.
-- Define the bridge requirements and architecture.
-- Implement and verify the RTL after consolidating the fundamentals.
+- Continue supplementary lessons and complete the relevant full-AHB/APB3 reading.
+- Practise burst, wait-state, ownership and handover timing examples.
+- Define the bridge's exact interface and supported-feature contract.
+- Build the driver, peripheral model and independent scoreboard.
+- Implement and verify the bridge gradually, then the multi-master integration setup.
+- Reconstruct the existing FIFO reference independently after the bridge milestone.
 
 ## Latest study checkpoint — 20 October 2026
 
-Day 10 focused on WRAP8 and undefined-length INCR bursts.
+Day 10 focused on WRAP8 read timing and undefined-length INCR bursts.
+Three handwritten pages and the [Day 10 journal](journal/day-010.md) are published.
+Today's study does not establish implemented burst support.
 
-Three handwritten pages and the [Day 10 journal](journal/day-010.md)
-record a WRAP8 word-read example starting at `0x34`, its 32-byte
-wrap block, read-transfer timing and the operation of INCR bursts.
+The next session will consolidate timing with independent exercises before
+adding more lecture material. See the daily practice section in the implementation route.
 
-The main takeaway is the distinction between a fixed wrapping
-burst and an incrementing burst without a predetermined beat count.
-Further study will connect these concepts to the bridge architecture.
+On 20 October, the project direction changed from AHB-Lite to full AHB at my
+request. The current route supersedes the old AHB-Lite implementation proposal;
+earlier journals remain historical records of the plan at those dates.
