@@ -8,8 +8,8 @@ and, later, the bridge implementation and verification results.
 
 ## Current status
 
-Study progress has reached Day 9: AHB burst types, incrementing
-and wrapping address sequences, transfer alignment and burst timing.
+Study progress has reached Day 10: WRAP8 read-transfer timing,
+wrap-boundary calculations and undefined-length INCR bursts.
 
 Protocol study is in progress. Bridge RTL implementation and
 simulation have not started.
@@ -27,6 +27,7 @@ simulation have not started.
 | Day 7 | AHB address/data phases, pipelined transfers, HREADY and wait-state timing; three pages |
 | Day 8 | AHB overlapping transfers, wait states, HTRANS types and HSIZE encodings; three pages |
 | Day 9 | HBURST encodings, INCR4/WRAP4 address sequences, wrap-block calculations, alignment and burst timing; four pages |
+| Day 10 | WRAP8 read timing, 32-byte wrap-block calculation and undefined-length INCR operation; three pages |
 
 The institute’s AMBA material has been covered. Supplementary
 video lessons are being used to strengthen conceptual understanding,
@@ -48,6 +49,7 @@ alongside the official Arm specifications.
 - [Day 8 supplementary lesson 1](https://youtu.be/M4CxmSdoSzA)
 - [Day 8 supplementary lesson 2](https://youtu.be/v2EcFDnWIrw)
 - [Day 9 supplementary lesson](https://youtu.be/1or91qL6bds)
+- [Day 10 supplementary lesson](https://youtu.be/4Wu0p0nN0Wo)
 
 The supplementary videos are from the playlist being followed
 from Day 6 onward. The official Arm specifications remain the
@@ -71,20 +73,20 @@ be specified before RTL development.
 ## Next steps
 
 - Continue supplementary lessons and protocol exercises.
-- Practise incrementing and wrapping address calculations.
+- Practise fixed-length and undefined-length burst examples.
 - Strengthen transfer timing, wait-state and address/data pairing concepts.
 - Relate AHB transfer completion to APB transactions.
 - Define the bridge requirements and architecture.
 - Implement and verify the RTL after consolidating the fundamentals.
 
-## Latest study checkpoint — 19 October 2026
+## Latest study checkpoint — 20 October 2026
 
-Day 9 focused on AHB burst transfers and address generation.
+Day 10 focused on WRAP8 and undefined-length INCR bursts.
 
-Four handwritten pages and the [Day 9 journal](journal/day-009.md)
-record HBURST encodings, INCR4 and WRAP4 examples, wrap-block
-sizes, transfer alignment and timing with wait states.
+Three handwritten pages and the [Day 10 journal](journal/day-010.md)
+record a WRAP8 word-read example starting at `0x34`, its 32-byte
+wrap block, read-transfer timing and the operation of INCR bursts.
 
-The main takeaway is the distinction between incrementing
-addresses and wrapping within an aligned block. Further work
-will connect these protocol concepts to the bridge architecture.
+The main takeaway is the distinction between a fixed wrapping
+burst and an incrementing burst without a predetermined beat count.
+Further study will connect these concepts to the bridge architecture.
