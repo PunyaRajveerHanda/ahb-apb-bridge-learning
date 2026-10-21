@@ -52,7 +52,7 @@ Reviewed two independent SINGLE word writes without wait states:
 The diagram illustrates address/data overlap and the completion edge
 of each write. Both independent transfers begin with NONSEQ.
 
-![AHB two-write timing example](notes/day-011-two-writes.png)
+![AHB two-write timing example](notes/Q1.%20day%2011.jpeg)
 
 This example was reviewed for understanding.
 Independent reconstruction and a version with one wait state are
