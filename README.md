@@ -8,8 +8,9 @@ a staged implementation and verification plan.
 
 ## Current status
 
-Study progress has reached Day 11: slave responses, transfer-type behavior
-during wait states and review of a two-write pipelining example.
+Study progress has reached Day 12: revision of earlier AHB concepts
+and introductory master-FSM study, including an interface sketch
+and read/write state notes.
 
 The implementation target is full AHB. The APB side uses APB3,
 including peripheral wait-state and error handling.
@@ -32,6 +33,8 @@ have not started.
 | Day 9 | HBURST encodings, INCR4/WRAP4 sequences, wrap-block calculations and alignment; four pages |
 | Day 10 | WRAP8 read timing, 32-byte wrap-block calculation and undefined-length INCR operation; three pages |
 | Day 11 | Slave responses, IDLE/BUSY wait-state examples and review of a supplied two-write timing diagram; three pages |
+
+| Day 12 | Revision of earlier AHB concepts and introductory master-FSM study, including an interface sketch and read/write state notes; two pages |
 
 The institute's AMBA material has been covered. Supplementary video
 lessons and official Arm specifications are being used to strengthen
@@ -115,15 +118,21 @@ when applying lesson material to the project.
 - Add the separate multi-master integration setup.
 - Reconstruct the existing FIFO reference independently after the bridge milestone.
 
-## Latest study checkpoint — 21 October 2026
+## Latest study checkpoint — 22 October 2026
 
-Day 11 covered slave response signaling and IDLE/BUSY examples during
-wait states. Three handwritten pages accompany a reviewed two-write
-timing diagram.
+Day 12 focused mainly on revision, with two handwritten pages covering
+an introductory AHB master interface and draft FSM.
 
-Independent reconstruction of the example is planned for the next
-session. Today's progress consists of study, notes and worked-example
-review.
+The notes connect earlier transfer-timing concepts with IDLE,
+read-address, read-data, write-address and write-data stages.
 
-The current full-AHB route supersedes the earlier AHB-Lite proposal.
-Earlier journals remain historical records of the plan at those dates.
+See the [Day 12 journal](journal/day-012.md) and handwritten notes:
+[page 1](notes/day-012-01.jpeg), [page 2](notes/day-012-02.jpeg).
+
+This is conceptual study, not a completed master or bridge implementation.
+The next practice task is to trace a SINGLE word write and relate
+its address/data completion edges to the draft state transitions.
+
+The current full-AHB-to-APB3 route supersedes the earlier AHB-Lite
+proposal. Earlier journals remain historical records of the plan
+at those dates.
