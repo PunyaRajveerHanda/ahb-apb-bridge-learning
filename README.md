@@ -102,6 +102,7 @@ See the [implementation route](docs/IMPLEMENTATION_PLAN.md) and
 - [Day 9 supplementary lesson](https://youtu.be/1or91qL6bds)
 - [Day 10 supplementary lesson](https://youtu.be/4Wu0p0nN0Wo)
 - [Day 11 supplementary lesson](https://youtu.be/39QRExXRBSs)
+- [Day 12 supplementary lesson — continued study and revision](https://youtu.be/39QRExXRBSs)
 
 The official specifications remain the reference for protocol behavior.
 Differences between full AHB and simplified interfaces are considered
