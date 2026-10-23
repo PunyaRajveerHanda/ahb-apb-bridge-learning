@@ -8,9 +8,10 @@ a staged implementation and verification plan.
 
 ## Current status
 
-Study progress has reached Day 12: revision of earlier AHB concepts
-and introductory master-FSM study, including an interface sketch
-and read/write state notes.
+Study progress has reached Day 13: handwritten study of an AHB master
+in Verilog, covering the module interface, internal registers, FIFO
+signals, state logic and a word-sized SINGLE write sequence.
+The master example has not yet been compiled or simulated.
 
 The implementation target is full AHB. The APB side uses APB3,
 including peripheral wait-state and error handling.
@@ -33,8 +34,8 @@ have not started.
 | Day 9 | HBURST encodings, INCR4/WRAP4 sequences, wrap-block calculations and alignment; four pages |
 | Day 10 | WRAP8 read timing, 32-byte wrap-block calculation and undefined-length INCR operation; three pages |
 | Day 11 | Slave responses, IDLE/BUSY wait-state examples and review of a supplied two-write timing diagram; three pages |
-
 | Day 12 | Revision of earlier AHB concepts and introductory master-FSM study, including an interface sketch and read/write state notes; two pages |
+| Day 13 | AHB master Verilog interface, internal registers, FIFO signals, state logic and SINGLE write sequence; [journal](journal/day-013.md) and five handwritten pages |
 
 The institute's AMBA material has been covered. Supplementary video
 lessons and official Arm specifications are being used to strengthen
@@ -112,6 +113,8 @@ when applying lesson material to the project.
 
 - Independently reconstruct the reviewed two-write timing example.
 - Extend it with one wait state and explain the completion edges.
+- Develop the master example with explicit state widths, FIFO bounds and wait-state handling.
+- Compile and simulate the SINGLE transfer path before extending it.
 - Continue full-AHB and APB3 protocol study.
 - Define the bridge's exact supported-feature contract.
 - Build the driver, peripheral model and independent scoreboard.
@@ -119,20 +122,21 @@ when applying lesson material to the project.
 - Add the separate multi-master integration setup.
 - Reconstruct the existing FIFO reference independently after the bridge milestone.
 
-## Latest study checkpoint — 22 October 2026
+## Latest study checkpoint — 23 October 2026
 
-Day 12 focused mainly on revision, with two handwritten pages covering
-an introductory AHB master interface and draft FSM.
+Day 13 focused on the Verilog structure of an AHB master, including
+its module interface, internal storage, FIFO signals and FSM logic.
+The handwritten example develops a SINGLE word-write sequence.
 
-The notes connect earlier transfer-timing concepts with IDLE,
-read-address, read-data, write-address and write-data stages.
+See the [Day 13 journal](journal/day-013.md) and handwritten notes:
+[page 1](notes/day-013-01.jpg), [page 2](notes/day-013-02.jpg),
+[page 3](notes/day-013-03.jpg), [page 4](notes/day-013-04.jpg),
+[page 5](notes/day-013-05.jpg).
 
-See the [Day 12 journal](journal/day-012.md) and handwritten notes:
-[page 1](notes/day-012-01.jpeg), [page 2](notes/day-012-02.jpeg).
-
-This is conceptual study, not a completed master or bridge implementation.
-The next practice task is to trace a SINGLE word write and relate
-its address/data completion edges to the draft state transitions.
+This is study of a partial example, not a compiled or simulated
+master or bridge implementation. The next practice task is to trace
+a SINGLE write with HREADY wait cycles before implementing and testing
+that transfer path.
 
 The current full-AHB-to-APB3 route supersedes the earlier AHB-Lite
 proposal. Earlier journals remain historical records of the plan
