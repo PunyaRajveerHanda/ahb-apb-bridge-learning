@@ -8,10 +8,9 @@ a staged implementation and verification plan.
 
 ## Current status
 
-24 October 2026: AHB study is paused today due to other work.
-The next study session is planned for 25 October, continuing the
-AHB master example and tracing a SINGLE write with HREADY wait cycles.
-No new lesson, notes or RTL results are recorded for today.
+24 October 2026: Attended an introductory lecture on APB basics.
+A dedicated APB study session is planned to cover the topic together
+and consolidate the understanding before bridge implementation.
 
 Study progress has reached Day 13: handwritten study of an AHB master
 in Verilog, covering the module interface, internal registers, FIFO
