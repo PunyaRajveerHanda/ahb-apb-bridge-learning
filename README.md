@@ -8,12 +8,15 @@ a staged implementation and verification plan.
 
 ## Current status
 
-Study progress has reached Day 14: handwritten Verilog study of an
-INCR4 master write extension, a simple slave FSM and testbench stimulus.
-The examples have not yet been compiled or simulated.
+Study progress has reached Day 15: wrapping-burst address generation,
+wrap-block base calculations and a handwritten Verilog extension.
+The AHB portion of the supplementary lecture series is complete.
+A consolidated reading of the official Arm AHB specification remains
+pending. Day 16 will begin focused APB protocol study.
 
-On 24 October, an introductory APB lecture was also attended; a
-dedicated APB session is planned to consolidate that topic.
+The handwritten master/slave examples have not yet been compiled or
+simulated. Earlier APB introductions provide the starting point for
+the upcoming APB sessions.
 
 The implementation target is full AHB. The APB side uses APB3,
 including peripheral wait-state and error handling.
@@ -39,6 +42,7 @@ have not started.
 | Day 12 | Revision of earlier AHB concepts and introductory master-FSM study, including an interface sketch and read/write state notes; two pages |
 | Day 13 | AHB master Verilog interface, internal registers, FIFO signals, state logic and SINGLE write sequence; [journal](journal/day-013.md) and five handwritten pages |
 | Day 14 | INCR4 master extension, beat counting, FIFO/address progression, simple slave FSM and testbench stimulus; [journal](journal/day-014.md) and seven handwritten pages |
+| Day 15 | Wrapping-burst block sizes, base-address masks, WRAP4 examples and draft Verilog extension; AHB lecture-series completion; [journal](journal/day-015.md) and three pages |
 
 The institute's AMBA material has been covered. Supplementary video
 lessons and official Arm specifications are being used to strengthen
@@ -109,6 +113,7 @@ See the [implementation route](docs/IMPLEMENTATION_PLAN.md) and
 - [Day 12 supplementary lesson — continued study and revision](https://youtu.be/39QRExXRBSs)
 - [Day 13 supplementary lesson — AHB master Verilog study](https://youtu.be/uzEg7ziaSaE)
 - [Day 14 supplementary lesson — INCR4, slave and testbench study](https://youtu.be/4jPAmDrMqfY)
+- [Day 15 supplementary lesson — wrapping-burst address generation](https://youtu.be/3LSP1SvmoyA)
 
 The official specifications remain the reference for protocol behavior.
 Differences between full AHB and simplified interfaces are considered
@@ -120,31 +125,29 @@ when applying lesson material to the project.
 - Extend it with one wait state and explain the completion edges.
 - Develop the master example with explicit state widths, FIFO bounds and wait-state handling.
 - Compile and simulate the SINGLE transfer path before extending it.
-- Continue full-AHB and APB3 protocol study.
+- Read the official Arm AHB specification to consolidate the completed lectures.
+- Begin Day 16 APB protocol study: signals, SETUP/ACCESS, timing, waits and errors.
 - Define the bridge's exact supported-feature contract.
 - Build the driver, peripheral model and independent scoreboard.
 - Implement and verify the bridge incrementally.
 - Add the separate multi-master integration setup.
 - Reconstruct the existing FIFO reference independently after the bridge milestone.
 
-## Latest study checkpoint — 26 October 2026
+## Latest study checkpoint — Day 15, 26 October 2026
 
-Day 14 continued the master Verilog study with an INCR4 write-burst
-example, beat counting, FIFO read-pointer updates and word-address
-progression. Further notes cover a simple slave FSM and the structure
-of a master/slave testbench with clock, reset and write stimulus.
+Completed the AHB part of the supplementary lecture series with
+wrapping-burst address generation. The notes cover 16-byte and 32-byte
+wrap blocks, aligned base-address masking, WRAP4 address sequences
+and a draft extension to the earlier master example.
 
-See the [Day 14 journal](journal/day-014.md) and handwritten notes:
-[page 1](notes/day-014-01.jpg), [page 2](notes/day-014-02.jpg),
-[page 3](notes/day-014-03.jpg), [page 4](notes/day-014-04.jpg),
-[page 5](notes/day-014-05.jpg), [page 6](notes/day-014-06.jpg),
-[page 7](notes/day-014-07.jpg).
+See the [Day 15 journal](journal/day-015.md),
+[lecture](https://youtu.be/3LSP1SvmoyA) and handwritten notes:
+[page 1](notes/day-015-01.jpeg), [page 2](notes/day-015-02.jpeg),
+[page 3](notes/day-015-03.jpeg).
 
-These are handwritten study examples, without compilation or simulation
-results. The next practical step is to verify SINGLE transfers, then
-check an INCR4 sequence for address/data ordering, wait handling and
-exactly four completed beats. The simplified slave is not yet a
-verified full-AHB component.
+Next: consolidate AHB understanding with the official Arm specification
+and begin focused APB protocol study in Day 16. RTL implementation,
+simulation and bridge verification remain practical milestones ahead.
 
 The current full-AHB-to-APB3 route supersedes the earlier AHB-Lite
 proposal. Earlier journals remain historical records of the plan
