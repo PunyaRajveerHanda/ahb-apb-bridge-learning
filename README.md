@@ -1,52 +1,45 @@
 # AHB-to-APB Bridge — Learning and RTL Design
 
-This repository documents my progress towards understanding, designing
-and verifying a full AMBA 2 AHB-to-APB bridge with APB3 peripheral interfaces.
+This repository documents my progress towards understanding, designing and verifying a full AMBA 2 AHB-to-APB bridge with APB3 peripheral interfaces.
 
-It contains handwritten notes, daily journals, learning resources and
-a staged implementation and verification plan.
+It contains handwritten notes, daily journals, learning resources and a staged implementation and verification plan.
 
 ## Current status
 
-Study progress has reached Day 15: wrapping-burst address generation,
-wrap-block base calculations and a handwritten Verilog extension.
-The AHB portion of the supplementary lecture series is complete.
-A consolidated reading of the official Arm AHB specification remains
-pending. Day 16 will begin focused APB protocol study.
+Study progress has reached **Day 16**. Today was used as a consolidation and revision session: I revised the AMBA concepts covered so far using my existing handwritten and study notes.
 
-The handwritten master/slave examples have not yet been compiled or
-simulated. Earlier APB introductions provide the starting point for
-the upcoming APB sessions.
+The AHB portion of the supplementary lecture series was completed on Day 15. A consolidated revision using the **official Arm AMBA/AHB specification material** still remains before moving deeper into implementation.
 
-The implementation target is full AHB. The APB side uses APB3,
-including peripheral wait-state and error handling.
+Focused APB protocol study is planned to begin on **Day 17**.
 
-Protocol study is ongoing. Bridge RTL implementation and simulation
-have not started.
+The handwritten master/slave examples have not yet been compiled or simulated. Earlier APB introductions provide the starting point for the upcoming APB sessions.
+
+The implementation target is full AHB. The APB side uses APB3, including peripheral wait-state and error handling.
+
+Protocol study is ongoing. Bridge RTL implementation and simulation have not started.
 
 ## Learning progress
 
-| Session | Work recorded |
-| --- | --- |
-| Day 1 | AMBA overview and bridge purpose; four handwritten pages |
-| Day 2 | AHB basic transfers, pipelining and introductory interconnection; five pages |
-| Day 3 | Legacy AHB interconnection, bursts and WRAP4 calculations; six pages |
-| Day 4 | Legacy AHB SPLIT transfers and bus data width; three pages |
-| Day 5 | APB states and introductory read/write timing; six pages |
-| Day 6 | Supplementary AHB basics, master-interface diagram and signal terminology; three pages |
-| Day 7 | AHB address/data phases, pipelined transfers, HREADY and wait-state timing; three pages |
-| Day 8 | Overlapping transfers, wait states, HTRANS types and HSIZE encodings; three pages |
-| Day 9 | HBURST encodings, INCR4/WRAP4 sequences, wrap-block calculations and alignment; four pages |
-| Day 10 | WRAP8 read timing, 32-byte wrap-block calculation and undefined-length INCR operation; three pages |
-| Day 11 | Slave responses, IDLE/BUSY wait-state examples and review of a supplied two-write timing diagram; three pages |
-| Day 12 | Revision of earlier AHB concepts and introductory master-FSM study, including an interface sketch and read/write state notes; two pages |
-| Day 13 | AHB master Verilog interface, internal registers, FIFO signals, state logic and SINGLE write sequence; [journal](journal/day-013.md) and five handwritten pages |
-| Day 14 | INCR4 master extension, beat counting, FIFO/address progression, simple slave FSM and testbench stimulus; [journal](journal/day-014.md) and seven handwritten pages |
-| Day 15 | Wrapping-burst block sizes, base-address masks, WRAP4 examples and draft Verilog extension; AHB lecture-series completion; [journal](journal/day-015.md) and three pages |
+| **Session** | **Work recorded** |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Day 1       | AMBA overview and bridge purpose; four handwritten pages |
+| Day 2       | AHB basic transfers, pipelining and introductory interconnection; five pages |
+| Day 3       | Legacy AHB interconnection, bursts and WRAP4 calculations; six pages |
+| Day 4       | Legacy AHB SPLIT transfers and bus data width; three pages |
+| Day 5       | APB states and introductory read/write timing; six pages |
+| Day 6       | Supplementary AHB basics, master-interface diagram and signal terminology; three pages |
+| Day 7       | AHB address/data phases, pipelined transfers, HREADY and wait-state timing; three pages |
+| Day 8       | Overlapping transfers, wait states, HTRANS types and HSIZE encodings; three pages |
+| Day 9       | HBURST encodings, INCR4/WRAP4 sequences, wrap-block calculations and alignment; four pages |
+| Day 10      | WRAP8 read timing, 32-byte wrap-block calculation and undefined-length INCR operation; three pages |
+| Day 11      | Slave responses, IDLE/BUSY wait-state examples and review of a supplied two-write timing diagram; three pages |
+| Day 12      | Revision of earlier AHB concepts and introductory master-FSM study, including an interface sketch and read/write state notes; two pages |
+| Day 13      | AHB master Verilog interface, internal registers, FIFO signals, state logic and SINGLE write sequence; [journal](https://github.com/PunyaRajveerHanda/ahb-apb-bridge-learning/blob/main/journal/day-013.md) and five handwritten pages |
+| Day 14      | INCR4 master extension, beat counting, FIFO/address progression, simple slave FSM and testbench stimulus; [journal](https://github.com/PunyaRajveerHanda/ahb-apb-bridge-learning/blob/main/journal/day-014.md) and seven handwritten pages |
+| Day 15      | Wrapping-burst block sizes, base-address masks, WRAP4 examples and draft Verilog extension; AHB lecture-series completion; [journal](https://github.com/PunyaRajveerHanda/ahb-apb-bridge-learning/blob/main/journal/day-015.md) and three pages |
+| Day 16      | Consolidated revision of the AMBA material covered so far using existing handwritten and study notes; no new RTL or simulation work |
 
-The institute's AMBA material has been covered. Supplementary video
-lessons and official Arm specifications are being used to strengthen
-understanding before implementation.
+The institute's AMBA material has been covered. The supplementary AHB lecture series has also been completed. The official Arm specifications will now be used to consolidate and verify protocol understanding before implementation.
 
 ## Repository structure
 
@@ -57,20 +50,17 @@ understanding before implementation.
 ## Day 11 worked example
 
 Reviewed two independent SINGLE word writes without wait states:
+
 - Write 0x11 to address 0x1000.
 - Write 0x22 to address 0x1004.
 
-The diagram illustrates address/data overlap and the completion edge
-of each write. Both independent transfers begin with NONSEQ.
+The diagram illustrates address/data overlap and the completion edge of each write. Both independent transfers begin with NONSEQ.
 
-![AHB two-write timing example](notes/Q1.%20day%2011.jpeg)
+[AHB two-write timing example](https://github.com/PunyaRajveerHanda/ahb-apb-bridge-learning/blob/main/notes/Q1.%20day%2011.jpeg) ([image](https://github.com/PunyaRajveerHanda/ahb-apb-bridge-learning/raw/main/notes/Q1.%20day%2011.jpeg))
 
-This example was reviewed for understanding.
-Independent reconstruction and a version with one wait state are
-planned for the next session.
+This example was reviewed for understanding. Independent reconstruction and a version with one wait state remain planned exercises.
 
-See the [Day 11 journal](journal/day-011.md) for the complete question
-and study summary.
+See the [Day 11 journal](https://github.com/PunyaRajveerHanda/ahb-apb-bridge-learning/blob/main/journal/day-011.md) for the complete question and study summary.
 
 ## Planned implementation scope
 
@@ -85,15 +75,11 @@ and study summary.
 - Ownership, handover and locked-sequence testing.
 - Defined reset, address-map and unsupported-request behavior.
 
-SPLIT and RETRY remain part of full-AHB study.
-Generating these responses in the bridge is a separately scoped
-extension. The arbiter remains outside the bridge.
+SPLIT and RETRY remain part of full-AHB study. Generating these responses in the bridge is a separately scoped extension. The arbiter remains outside the bridge.
 
-Burst support, multi-master integration and bridge verification
-are planned work and are not claimed as complete.
+Burst support, multi-master integration and bridge verification are planned work and are not claimed as complete.
 
-See the [implementation route](docs/IMPLEMENTATION_PLAN.md) and
-[protocol reference](docs/PROTOCOL_REFERENCE.md).
+See the [implementation route](https://github.com/PunyaRajveerHanda/ahb-apb-bridge-learning/blob/main/docs/IMPLEMENTATION_PLAN.md) and [protocol reference](https://github.com/PunyaRajveerHanda/ahb-apb-bridge-learning/blob/main/docs/PROTOCOL_REFERENCE.md).
 
 ## Resources
 
@@ -115,40 +101,35 @@ See the [implementation route](docs/IMPLEMENTATION_PLAN.md) and
 - [Day 14 supplementary lesson — INCR4, slave and testbench study](https://youtu.be/4jPAmDrMqfY)
 - [Day 15 supplementary lesson — wrapping-burst address generation](https://youtu.be/3LSP1SvmoyA)
 
-The official specifications remain the reference for protocol behavior.
-Differences between full AHB and simplified interfaces are considered
-when applying lesson material to the project.
+The official specifications remain the reference for protocol behavior. Differences between full AHB and simplified interfaces are considered when applying lesson material to the project.
 
 ## Next steps
 
-- Independently reconstruct the reviewed two-write timing example.
-- Extend it with one wait state and explain the completion edges.
+- Revise and consolidate AHB understanding using the official Arm AMBA/AHB specification.
+- Begin **Day 17 focused APB protocol study**, starting with APB signals, SETUP/ACCESS sequencing and basic transfer timing.
+- Progress to APB wait states and error handling after the basic transfer sequence is clear.
+- Independently reconstruct the reviewed two-write AHB timing example.
+- Extend the example with one wait state and explain the completion edges.
 - Develop the master example with explicit state widths, FIFO bounds and wait-state handling.
 - Compile and simulate the SINGLE transfer path before extending it.
-- Read the official Arm AHB specification to consolidate the completed lectures.
-- Begin Day 16 APB protocol study: signals, SETUP/ACCESS, timing, waits and errors.
 - Define the bridge's exact supported-feature contract.
 - Build the driver, peripheral model and independent scoreboard.
 - Implement and verify the bridge incrementally.
 - Add the separate multi-master integration setup.
 - Reconstruct the existing FIFO reference independently after the bridge milestone.
 
-## Latest study checkpoint — Day 15, 26 October 2026
+## Latest study checkpoint — Day 16, 27 October 2026
 
-Completed the AHB part of the supplementary lecture series with
-wrapping-burst address generation. The notes cover 16-byte and 32-byte
-wrap blocks, aligned base-address masking, WRAP4 address sequences
-and a draft extension to the earlier master example.
+Day 16 was used as a **full revision and consolidation session**.
 
-See the [Day 15 journal](journal/day-015.md),
-[lecture](https://youtu.be/3LSP1SvmoyA) and handwritten notes:
-[page 1](notes/day-015-01.jpeg), [page 2](notes/day-015-02.jpeg),
-[page 3](notes/day-015-03.jpeg).
+I revised the AMBA material covered so far using my existing handwritten and study notes, revisiting the concepts developed across the earlier AHB and introductory APB sessions.
 
-Next: consolidate AHB understanding with the official Arm specification
-and begin focused APB protocol study in Day 16. RTL implementation,
-simulation and bridge verification remain practical milestones ahead.
+No new RTL, compilation or simulation work was performed during this session. The purpose of Day 16 was to strengthen the conceptual foundation before continuing with the official specifications and focused APB study.
 
-The current full-AHB-to-APB3 route supersedes the earlier AHB-Lite
-proposal. Earlier journals remain historical records of the plan
-at those dates.
+The supplementary AHB lecture series remains complete from Day 15.
+
+**Next:** revise AMBA/AHB using the official Arm specification material and begin focused APB protocol study on Day 17.
+
+RTL implementation, simulation and bridge verification remain practical milestones ahead.
+
+The current full-AHB-to-APB3 route supersedes the earlier AHB-Lite proposal. Earlier journals remain historical records of the plan at those dates.
