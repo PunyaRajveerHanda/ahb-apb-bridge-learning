@@ -6,11 +6,11 @@ It contains handwritten notes, daily journals, learning resources and a staged i
 
 ## Current status
 
-Study progress has reached **Day 16**. Today was used as a consolidation and revision session: I revised the AMBA concepts covered so far using my existing handwritten and study notes.
+Study progress has reached **Day 17**: focused APB study covering its purpose, interface signals and master/slave signal directions, with three handwritten pages.
 
 The AHB portion of the supplementary lecture series was completed on Day 15. A consolidated revision using the **official Arm AMBA/AHB specification material** still remains before moving deeper into implementation.
 
-Focused APB protocol study is planned to begin on **Day 17**.
+Focused APB protocol study has begun. The bridge targets APB3; PPROT and PSTRB are studied separately as APB4 additions.
 
 The handwritten master/slave examples have not yet been compiled or simulated. Earlier APB introductions provide the starting point for the upcoming APB sessions.
 
@@ -38,6 +38,7 @@ Protocol study is ongoing. Bridge RTL implementation and simulation have not sta
 | Day 14      | INCR4 master extension, beat counting, FIFO/address progression, simple slave FSM and testbench stimulus; [journal](https://github.com/PunyaRajveerHanda/ahb-apb-bridge-learning/blob/main/journal/day-014.md) and seven handwritten pages |
 | Day 15      | Wrapping-burst block sizes, base-address masks, WRAP4 examples and draft Verilog extension; AHB lecture-series completion; [journal](https://github.com/PunyaRajveerHanda/ahb-apb-bridge-learning/blob/main/journal/day-015.md) and three pages |
 | Day 16      | Consolidated revision of the AMBA material covered so far using existing handwritten and study notes; no new RTL or simulation work |
+| Day 17 | APB fundamentals, bridge context, request/response signals and master/slave diagrams; [journal](journal/day-017.md) and three handwritten pages |
 
 The institute's AMBA material has been covered. The supplementary AHB lecture series has also been completed. The official Arm specifications will now be used to consolidate and verify protocol understanding before implementation.
 
@@ -100,13 +101,14 @@ See the [implementation route](https://github.com/PunyaRajveerHanda/ahb-apb-brid
 - [Day 13 supplementary lesson — AHB master Verilog study](https://youtu.be/uzEg7ziaSaE)
 - [Day 14 supplementary lesson — INCR4, slave and testbench study](https://youtu.be/4jPAmDrMqfY)
 - [Day 15 supplementary lesson — wrapping-burst address generation](https://youtu.be/3LSP1SvmoyA)
+- [Day 17 supplementary lesson — APB fundamentals and signals](https://youtu.be/MIjXS7ap0Hk)
 
 The official specifications remain the reference for protocol behavior. Differences between full AHB and simplified interfaces are considered when applying lesson material to the project.
 
 ## Next steps
 
 - Revise and consolidate AHB understanding using the official Arm AMBA/AHB specification.
-- Begin **Day 17 focused APB protocol study**, starting with APB signals, SETUP/ACCESS sequencing and basic transfer timing.
+- Continue APB study with SETUP/ACCESS sequencing and basic read/write timing.
 - Progress to APB wait states and error handling after the basic transfer sequence is clear.
 - Independently reconstruct the reviewed two-write AHB timing example.
 - Extend the example with one wait state and explain the completion edges.
@@ -118,18 +120,20 @@ The official specifications remain the reference for protocol behavior. Differen
 - Add the separate multi-master integration setup.
 - Reconstruct the existing FIFO reference independently after the bridge milestone.
 
-## Latest study checkpoint — Day 16, 27 October 2026
+## Latest study checkpoint — Day 17, 28 October 2026
 
-Day 16 was used as a **full revision and consolidation session**.
+Began focused APB study with its peripheral-register use cases, bridge
+context, signal widths and master/slave input-output diagrams.
+Studied PREADY, PRDATA and PSLVERR alongside the request signals.
+PPROT and PSTRB are later-version additions rather than APB3 signals.
 
-I revised the AMBA material covered so far using my existing handwritten and study notes, revisiting the concepts developed across the earlier AHB and introductory APB sessions.
+See the [Day 17 journal](journal/day-017.md),
+[lecture](https://youtu.be/MIjXS7ap0Hk) and handwritten notes:
+[page 1](notes/day-017-01.jpg), [page 2](notes/day-017-02.jpg),
+[page 3](notes/day-017-03.jpg).
 
-No new RTL, compilation or simulation work was performed during this session. The purpose of Day 16 was to strengthen the conceptual foundation before continuing with the official specifications and focused APB study.
-
-The supplementary AHB lecture series remains complete from Day 15.
-
-**Next:** revise AMBA/AHB using the official Arm specification material and begin focused APB protocol study on Day 17.
-
-RTL implementation, simulation and bridge verification remain practical milestones ahead.
+Next: draw SETUP/ACCESS timing for reads and writes, then study wait
+states and errors. Official AHB specification consolidation remains
+pending; bridge RTL implementation and verification remain ahead.
 
 The current full-AHB-to-APB3 route supersedes the earlier AHB-Lite proposal. Earlier journals remain historical records of the plan at those dates.
