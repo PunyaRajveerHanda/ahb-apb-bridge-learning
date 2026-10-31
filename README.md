@@ -195,3 +195,8 @@ Next: continue APB protocol study with error handling and `PSLVERR`, then connec
 Official AHB specification consolidation remains pending; bridge RTL implementation and verification remain ahead.
 
 The current full-AHB-to-APB3 route supersedes the earlier AHB-Lite proposal. Earlier journals remain historical records of the plan at those dates.
+
+## Study checkpoint — 1 November 2026
+
+I am continuing and finishing my APB protocol study. The next topics are APB error handling with PSLVERR and connecting the transfer timing to the full AHB-to-APB3 bridge control FSM. Protocol learning is still in progress; bridge RTL implementation and simulation have not started.
+
