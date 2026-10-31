@@ -32,9 +32,7 @@ The target remains a shared-clock, 32-bit, full legacy AMBA 2 AHB slave to APB3 
 | Day 16 | Consolidated revision of the AMBA material covered so far using existing handwritten and study notes; no new RTL or simulation work |
 | Day 17 | APB fundamentals, bridge context, request/response signals and master/slave diagrams; [journal](journal/day-017.md) and three handwritten pages |
 | Day 18 | APB write/read transfers, SETUP and ACCESS sequencing, `PENABLE`, `PREADY`, and timing with and without wait states; [journal](journal/day-018.md) and three handwritten pages |
-
 | Day 19 | APB Slave Error Response; [journal](journal/day-019.md) and 3 handwritten pages |
-
 | Day 20 | APB Master FSM and Verilog Study; [journal](journal/day-020.md) and 5 handwritten pages |
 
 The institute's AMBA material has been covered. The supplementary AHB lecture series has also been completed. The official Arm specifications will now be used to consolidate and verify protocol understanding before implementation.
