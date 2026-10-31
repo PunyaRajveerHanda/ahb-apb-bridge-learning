@@ -6,19 +6,9 @@ It contains handwritten notes, daily journals, learning resources and a staged i
 
 ## Current status
 
-Study progress has reached **Day 18**: focused APB timing study covering write and read transfers, SETUP/ACCESS sequencing, `PENABLE`, `PREADY`, and transfers with and without wait states.
+Study progress has reached **Day 19**. Day 19 covered APB3 slave error responses, PSLVERR completion timing and operating-state revision. APB study continues with an introductory master FSM and Verilog/testbench walkthrough.
 
-The AHB portion of the supplementary lecture series was completed on Day 15. A consolidated revision using the **official Arm AMBA/AHB specification material** still remains before moving deeper into implementation.
-
-Focused APB protocol study is now progressing from interface fundamentals into actual transfer timing. The bridge targets APB3; `PPROT` and `PSTRB` are studied separately as APB4 additions.
-
-Day 18 covered the minimum two-cycle APB transfer, the role of the slave-driven `PREADY` signal, and how the ACCESS phase is extended when a peripheral requires wait states.
-
-The handwritten master/slave examples have not yet been compiled or simulated.
-
-The implementation target is full AHB. The APB side uses APB3, including peripheral wait-state and error handling.
-
-Protocol study is ongoing. Bridge RTL implementation and simulation have not started.
+The target remains a shared-clock, 32-bit, full legacy AMBA 2 AHB slave to APB3 master bridge. Official Arm specification consolidation and independent implementation practice remain. Handwritten code has not been compiled or simulated. Full bridge RTL and verification have not started.
 
 ## Learning progress
 
@@ -42,6 +32,8 @@ Protocol study is ongoing. Bridge RTL implementation and simulation have not sta
 | Day 16 | Consolidated revision of the AMBA material covered so far using existing handwritten and study notes; no new RTL or simulation work |
 | Day 17 | APB fundamentals, bridge context, request/response signals and master/slave diagrams; [journal](journal/day-017.md) and three handwritten pages |
 | Day 18 | APB write/read transfers, SETUP and ACCESS sequencing, `PENABLE`, `PREADY`, and timing with and without wait states; [journal](journal/day-018.md) and three handwritten pages |
+
+| Day 19 | APB Slave Error Response; [journal](journal/day-019.md) and 3 handwritten pages |
 
 The institute's AMBA material has been covered. The supplementary AHB lecture series has also been completed. The official Arm specifications will now be used to consolidate and verify protocol understanding before implementation.
 
@@ -109,12 +101,14 @@ See the [implementation route](https://github.com/PunyaRajveerHanda/ahb-apb-brid
 - [Day 17 supplementary lesson — APB fundamentals and signals](https://youtu.be/MIjXS7ap0Hk)
 - [Day 18 supplementary lesson — APB read/write transfers and wait states](https://youtu.be/MThzJkZeVDI?si=1A2vykQqQBr5_WNo)
 
+- [Day 19 supplementary lesson — APB Slave Error Response](https://youtu.be/q3jmUDlo94I?si=1Js5NIAwlC3dE8fJ)
+
 The official specifications remain the reference for protocol behavior. Differences between full AHB and simplified interfaces are considered when applying lesson material to the project.
 
 ## Next steps
 
 - Revise and consolidate AHB understanding using the official Arm AMBA/AHB specification.
-- Continue APB study with error response behavior and `PSLVERR`.
+- Correct and independently reconstruct the APB master FSM example, including read data and error handling.
 - Consolidate APB SETUP/ACCESS timing for both read and write transfers.
 - Practice identifying the exact completion edge using `PSEL`, `PENABLE` and `PREADY`.
 - Study how APB wait states will be represented inside the bridge FSM.
@@ -128,75 +122,13 @@ The official specifications remain the reference for protocol behavior. Differen
 - Add the separate multi-master integration setup.
 - Reconstruct the existing FIFO reference independently after the bridge milestone.
 
-## Latest study checkpoint — Day 18, 29 October 2026
+## Latest study checkpoint — Day 19, 31 October 2026
 
-Continued focused APB study by moving from basic interface signals to complete read and write transfer timing.
+Day 19 covered APB3 slave error responses, PSLVERR completion timing and operating-state revision. APB study continues with an introductory master FSM and Verilog/testbench walkthrough.
 
-Studied the two APB transfer phases:
+See the [Day 19 journal](journal/day-019.md), [lecture](https://youtu.be/q3jmUDlo94I?si=1Js5NIAwlC3dE8fJ) and notes: [page 1](notes/day-019-01.jpeg), [page 2](notes/day-019-02.jpeg), [page 3](notes/day-019-03.jpeg).
 
-```text
-SETUP → ACCESS
-```
+Next: consolidate AHB/APB against the official Arm specifications, independently reconstruct the APB example, and define the bridge FSM/control contract. The journal records corrections needed in the handwritten examples. Full bridge implementation and simulation have not started.
 
-During SETUP:
-
-```text
-PSEL = 1
-PENABLE = 0
-```
-
-During ACCESS:
-
-```text
-PSEL = 1
-PENABLE = 1
-```
-
-A transfer completes when the selected slave is ready during the ACCESS phase:
-
-```text
-PSEL = 1
-PENABLE = 1
-PREADY = 1
-```
-
-Studied both write and read transfers without wait states and with wait states.
-
-For a write transfer, the master provides the address and write data through `PADDR` and `PWDATA`.
-
-For a read transfer, the slave returns data through `PRDATA`.
-
-The important wait-state behavior studied today was:
-
-```text
-PREADY = 0
-```
-
-during ACCESS means the slave is not yet ready to complete the transfer. The ACCESS phase is therefore extended while the address, control and write-data signals remain stable.
-
-Once:
-
-```text
-PREADY = 1
-```
-
-the transfer can complete on the corresponding clock edge.
-
-An important distinction reinforced today is that APB uses **SETUP and ACCESS phases**, rather than the pipelined address/data phase terminology used for AHB.
-
-Also, `PREADY` is generated by the APB slave and is used by the master/bridge to determine when an ACCESS phase can complete.
-
-See the [Day 18 journal](journal/day-018.md), [lecture](https://youtu.be/MThzJkZeVDI?si=1A2vykQqQBr5_WNo) and handwritten notes:
-
-[page 1](notes/day-018-01.jpeg), [page 2](notes/day-018-02.jpeg), [page 3](notes/day-018-03.jpeg).
-
-Next: continue APB protocol study with error handling and `PSLVERR`, then connect the APB timing knowledge to the control states required in the AHB-to-APB bridge FSM.
-
-Official AHB specification consolidation remains pending; bridge RTL implementation and verification remain ahead.
-
-The current full-AHB-to-APB3 route supersedes the earlier AHB-Lite proposal. Earlier journals remain historical records of the plan at those dates.
-
-## Study checkpoint — 1 November 2026
-
-I am continuing and finishing my APB protocol study. The next topics are APB error handling with PSLVERR and connecting the transfer timing to the full AHB-to-APB3 bridge control FSM. Protocol learning is still in progress; bridge RTL implementation and simulation have not started.
+The full-AHB-to-APB3 route supersedes the earlier AHB-Lite proposal. Earlier journals remain historical records.
 
