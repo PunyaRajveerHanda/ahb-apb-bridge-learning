@@ -6,7 +6,7 @@ It contains handwritten notes, daily journals, learning resources and a staged i
 
 ## Current status
 
-Study progress has reached **Day 19**. Day 19 covered APB3 slave error responses, PSLVERR completion timing and operating-state revision. APB study continues with an introductory master FSM and Verilog/testbench walkthrough.
+Study progress has reached **Day 20**. The planned APB protocol lecture study is complete, including signals, read/write timing, wait states, PSLVERR, operating states and an introductory master FSM/Verilog/testbench walkthrough.
 
 The target remains a shared-clock, 32-bit, full legacy AMBA 2 AHB slave to APB3 master bridge. Official Arm specification consolidation and independent implementation practice remain. Handwritten code has not been compiled or simulated. Full bridge RTL and verification have not started.
 
@@ -35,9 +35,11 @@ The target remains a shared-clock, 32-bit, full legacy AMBA 2 AHB slave to APB3 
 
 | Day 19 | APB Slave Error Response; [journal](journal/day-019.md) and 3 handwritten pages |
 
+| Day 20 | APB Master FSM and Verilog Study; [journal](journal/day-020.md) and 5 handwritten pages |
+
 The institute's AMBA material has been covered. The supplementary AHB lecture series has also been completed. The official Arm specifications will now be used to consolidate and verify protocol understanding before implementation.
 
-Focused APB study is continuing alongside this consolidation.
+The planned APB lecture study is complete; specification consolidation and independent RTL practice are next.
 
 ## Repository structure
 
@@ -103,6 +105,8 @@ See the [implementation route](https://github.com/PunyaRajveerHanda/ahb-apb-brid
 
 - [Day 19 supplementary lesson — APB Slave Error Response](https://youtu.be/q3jmUDlo94I?si=1Js5NIAwlC3dE8fJ)
 
+- [Day 20 supplementary lesson — APB Master FSM and Verilog Study](https://youtu.be/WFYG1ST5pko?si=5z7-ERtmQhpPBQgY)
+
 The official specifications remain the reference for protocol behavior. Differences between full AHB and simplified interfaces are considered when applying lesson material to the project.
 
 ## Next steps
@@ -122,11 +126,11 @@ The official specifications remain the reference for protocol behavior. Differen
 - Add the separate multi-master integration setup.
 - Reconstruct the existing FIFO reference independently after the bridge milestone.
 
-## Latest study checkpoint — Day 19, 31 October 2026
+## Latest study checkpoint — Day 20, 1 November 2026
 
-Day 19 covered APB3 slave error responses, PSLVERR completion timing and operating-state revision. APB study continues with an introductory master FSM and Verilog/testbench walkthrough.
+The planned APB protocol lecture study is complete, including signals, read/write timing, wait states, PSLVERR, operating states and an introductory master FSM/Verilog/testbench walkthrough.
 
-See the [Day 19 journal](journal/day-019.md), [lecture](https://youtu.be/q3jmUDlo94I?si=1Js5NIAwlC3dE8fJ) and notes: [page 1](notes/day-019-01.jpeg), [page 2](notes/day-019-02.jpeg), [page 3](notes/day-019-03.jpeg).
+See the [Day 20 journal](journal/day-020.md), [lecture](https://youtu.be/WFYG1ST5pko?si=5z7-ERtmQhpPBQgY) and notes: [page 1](notes/day-020-01.jpeg), [page 2](notes/day-020-02.jpeg), [page 3](notes/day-020-03.jpeg), [page 4](notes/day-020-04.jpeg), [page 5](notes/day-020-05.jpeg).
 
 Next: consolidate AHB/APB against the official Arm specifications, independently reconstruct the APB example, and define the bridge FSM/control contract. The journal records corrections needed in the handwritten examples. Full bridge implementation and simulation have not started.
 
